@@ -50,7 +50,5 @@
       "@build-vendor"
     ]
   },
-  "require": {
-    "nesbot/carbon": "^3.11"
-  }
+  "require": {}
 }

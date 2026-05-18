@@ -1,0 +1,50 @@
+{
+  "name": "orph/stack",
+  "description": "stack for wordpress",
+  "type": "wp-stack",
+  "autoload": {
+    "psr-4": {
+      "Orph\\Stack\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "alexandre",
+      "email": "alexandre.mr.billereau@gmail.com"
+    }
+  ],
+  "require-dev": {
+    "bamarni/composer-bin-plugin": "^1.9"
+  },
+  "config": {
+    "allow-plugins": {
+      "bamarni/composer-bin-plugin": true
+    }
+  },
+  "extra": {
+    "bamarni-bin": {
+      "target-directory": ".orph/vendor-bin",
+      "forward-command": true,
+      "bin-links": false
+    }
+  },
+  "scripts": {
+    "clean-scope": [
+      "@php .orph/scripts/clean-scope.php"
+    ],
+    "scope": [
+      ".orph/vendor-bin/php-scoper/vendor/bin/php-scoper add-prefix vendor --output-dir=composer-build --force --no-interaction"
+    ],
+    "post-install-cmd": [
+      "@clean-scope",
+      "@scope"
+    ],
+    "post-update-cmd": [
+      "@clean-scope",
+      "@scope"
+    ]
+  },
+  "require": {
+    "nesbot/carbon": "^3.11"
+  }
+}

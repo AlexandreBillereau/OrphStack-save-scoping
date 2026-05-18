@@ -13,41 +13,28 @@
       "email": "alexandre.mr.billereau@gmail.com"
     }
   ],
-  "require-dev": {
-    "bamarni/composer-bin-plugin": "^1.9"
-  },
   "config": {
-    "allow-plugins": {
-      "bamarni/composer-bin-plugin": true
-    }
+    "allow-plugins": {}
   },
   "extra": {
-    "bamarni-bin": {
-      "target-directory": ".orph/vendor-bin",
-      "forward-command": true,
-      "bin-links": false
+    "strauss": {
+      "target_directory": "composer-build",
+      "namespace_prefix": "Test_Vendor\\Vendor\\",
+      "classmap_prefix": "Test_Vendor_Vendor_",
+      "optimize_autoloader": true
     }
   },
   "scripts": {
-    "clean-scope": [
-      "@php .orph/scripts/clean-scope.php"
-    ],
-    "scope": [
-      ".orph/vendor-bin/php-scoper/vendor/bin/php-scoper add-prefix --config=scoper.inc.php vendor --output-dir=composer-build --force --no-interaction"
-    ],
-    "rebuild-scoped-autoload": [
-      "@php .orph/scripts/rebuild-scoped-autoload.php"
-    ],
-    "build-vendor": [
-      "@clean-scope",
-      "@scope",
-      "@rebuild-scoped-autoload"
+    "prefix-namespaces": [
+      "sh -c 'test -f ./bin/strauss.phar || curl -fsSL -o bin/strauss.phar -L https://github.com/BrianHenryIE/strauss/releases/latest/download/strauss.phar'",
+      "@php bin/strauss.phar",
+      "@composer dump-autoload"
     ],
     "post-install-cmd": [
-      "@build-vendor"
+      "@prefix-namespaces"
     ],
     "post-update-cmd": [
-      "@build-vendor"
+      "@prefix-namespaces"
     ]
   },
   "require": {}

@@ -44,10 +44,10 @@ This section describes how to install the plugin and get it working.
 = Développement =
 
 1. Cloner le dépôt dans `wp-content/plugins/test-vendor`
-2. À la racine du plugin : `composer install` (une seule commande : deps, bin php-scoper, scope, autoload dans `composer-build/`)
+2. À la racine du plugin : `composer install` (Strauss préfixe les deps `require` dans `composer-build/`)
 3. Activer le plugin dans WordPress
 
-Les dépendances runtime scopées sont dans `composer-build/` (généré, non versionné). Utiliser les classes avec le préfixe `Test_Vendor\Vendor\` (ex. `Test_Vendor\Vendor\Carbon\Carbon`).
+Dépendances isolées : `composer-build/` (généré, non versionné). Classes avec le préfixe `Test_Vendor\Vendor\` (ex. `Test_Vendor\Vendor\Carbon\Carbon`).
 
 = Production =
 

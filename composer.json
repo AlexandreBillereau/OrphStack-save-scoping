@@ -29,6 +29,9 @@
     }
   },
   "scripts": {
+    "install-scoper": [
+      "composer bin php-scoper install --no-interaction"
+    ],
     "clean-scope": [
       "@php .orph/scripts/clean-scope.php"
     ],

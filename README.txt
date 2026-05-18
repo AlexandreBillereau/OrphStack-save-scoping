@@ -41,11 +41,19 @@ you put the stable version, in order to eliminate any doubt.
 
 This section describes how to install the plugin and get it working.
 
-e.g.
+= Développement =
+
+1. Cloner le dépôt dans `wp-content/plugins/test-vendor`
+2. À la racine du plugin : `composer install` (une seule commande : deps, bin php-scoper, scope, autoload dans `composer-build/`)
+3. Activer le plugin dans WordPress
+
+Les dépendances runtime scopées sont dans `composer-build/` (généré, non versionné). Utiliser les classes avec le préfixe `Test_Vendor\Vendor\` (ex. `Test_Vendor\Vendor\Carbon\Carbon`).
+
+= Production =
 
 1. Upload `test-vendor.php` to the `/wp-content/plugins/` directory
-1. Activate the plugin through the 'Plugins' menu in WordPress
-1. Place `<?php do_action('plugin_name_hook'); ?>` in your templates
+2. Run `composer install` in the plugin directory before activation (or ship a build that includes `composer-build/`)
+3. Activate the plugin through the 'Plugins' menu in WordPress
 
 == Frequently Asked Questions ==
 

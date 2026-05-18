@@ -29,22 +29,25 @@
     }
   },
   "scripts": {
-    "install-scoper": [
-      "composer bin php-scoper install --no-interaction"
-    ],
     "clean-scope": [
       "@php .orph/scripts/clean-scope.php"
     ],
     "scope": [
-      ".orph/vendor-bin/php-scoper/vendor/bin/php-scoper add-prefix vendor --output-dir=composer-build --force --no-interaction"
+      ".orph/vendor-bin/php-scoper/vendor/bin/php-scoper add-prefix --config=scoper.inc.php vendor --output-dir=composer-build --force --no-interaction"
+    ],
+    "rebuild-scoped-autoload": [
+      "@php .orph/scripts/rebuild-scoped-autoload.php"
+    ],
+    "build-vendor": [
+      "@clean-scope",
+      "@scope",
+      "@rebuild-scoped-autoload"
     ],
     "post-install-cmd": [
-      "@clean-scope",
-      "@scope"
+      "@build-vendor"
     ],
     "post-update-cmd": [
-      "@clean-scope",
-      "@scope"
+      "@build-vendor"
     ]
   },
   "require": {
